@@ -2,21 +2,21 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (!license) return ``;
-    return `![license](https://img.shields.io/badge/license-${license}-blue)`;
+  return `![license](https://img.shields.io/badge/license-${license}-blue)`;
 };
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (!license) return ``;
-    return `[${renderLicenseBadge(license)}](https://opensource.org/licenses/MIT)`;
+  return `[${renderLicenseBadge(license)}](https://opensource.org/licenses/MIT)`;
 };
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (!license) return ``;
-    return renderLicenseLink(license);
+  return renderLicenseLink(license);
 };
 
 // TODO: Create a function to generate markdown for README
@@ -26,9 +26,10 @@ function generateMarkdown(data) {
   return `# ${data.title}
 
   ## Project Description
-    Here is what this project does: ${data.description}
-
-  ## Table of Contents
+    Here is what this project does: ${data.description}.
+    
+    
+    ## Table of Contents
     1. [Project Description](#project description)
     2. [Package(s) Used](#package used)
     3. [Technology Used](#technologies used)
@@ -48,15 +49,18 @@ function generateMarkdown(data) {
 
   ## Questions
     How to reach me:
-      \nEmail:  
-      \nGitHub: ${data.gitHub}
+      \nEmail:  ${data.email}
+      \nGitHub: ${data.username}
 
 
   ## License
     ${data.license}
 
 
+  ## Demonstration
+  
 `;
 }
 
-module.exports = generateMarkdown;
+module.exports = { generateMarkdown };
+

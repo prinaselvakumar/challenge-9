@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./generateMarkdown');
+const { generateMarkdown } = require('./generateMarkdown');
 
 
 
@@ -19,7 +19,7 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'packages',
+        name: 'package',
         message: 'What packages are needed for this project?',
     },
     {
@@ -31,7 +31,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'What kind of license would you like?',
-        choices: ['APACHE 2.0', 'MIT','BSD 3', 'None'],
+        choices: ['APACHE 2.0', 'MIT', 'BSD 3', 'None'],
     },
     {
         type: 'input',
@@ -47,13 +47,15 @@ const questions = [
         type: 'input',
         name: 'tests',
         message: 'What command is used to run a test',
-    },
+    }
 ];
 
 inquirer.prompt(questions)
     .then((response) => {
-        console.log(response);
+        generateMarkdown(response);
+        writeToFile("README.md", generateMarkdown(response));
     });
+
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
@@ -61,20 +63,11 @@ function writeToFile(fileName, data) {
         if (err) {
             throw err;
         }
-        console.log("README written successfully");
-        });
-    };
-
-// TODO: Create a function to initialize app
-async function init() {
-    try {
-        const answers = questions();
-        generateMarkdown(answers);
-        writeToFile("README.md", generateMarkdown(answers));
-        } catch (err) {
-            console.log(err);
-    };
+    });
 };
 
+// TODO: Create a function to initialize app
+
+
 // Function call to initialize app
-init();
+
